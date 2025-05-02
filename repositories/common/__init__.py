@@ -1,0 +1,1 @@
+from repositories.common.base import InterfaceRepository
