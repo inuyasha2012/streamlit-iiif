@@ -17,3 +17,4 @@ langgraph~=0.3.16
 langchain-openai~=0.3.8
 streamlit-authenticator==0.4.2
 dependency-injector==4.46.0
+pysqlite3-binary==0.5.4
