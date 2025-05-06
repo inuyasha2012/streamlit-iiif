@@ -142,7 +142,7 @@ class CollectionView:
                 col.html(
                     f"""
                     <div style="border:1px solid #ddd; border-radius:8px; padding:10px; margin-bottom:15px;">
-                        <a href="/show/?{encoded_params}">
+                        <a href="/show?{encoded_params}">
                             <img src="{manifest.thumbnail_url}" alt="{getattr(manifest, 'label', f'Item {i + 1}')}"
                             style="width:100%; border-radius:6px;"/>
                         </a>
