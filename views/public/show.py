@@ -22,8 +22,7 @@ class ShowView:
     def render_iiif_viewer(self, manifest_url: str):
 
         if not manifest_url:
-            st.error("No manifest URL provided. Please specify a 'manifest_url' query parameter.")
-            return
+            manifest_url = 'https://inuyasha021.github.io/manifests/ff60c5db13074ecfb4cb5f3853373189/manifest.json'
 
         st.markdown("""
             <style>

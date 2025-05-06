@@ -110,7 +110,7 @@ class CollectionView:
         container =st.container()
 
         # Pagination setup
-        items_per_page = 8  # Number of items per page
+        items_per_page = 20  # Number of items per page
         total_items = len(filtered_manifests)
         total_pages = math.ceil(total_items / items_per_page)
 

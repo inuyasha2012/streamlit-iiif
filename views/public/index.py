@@ -1,12 +1,17 @@
 import streamlit as st
+from streamlit.errors import StreamlitSetPageConfigMustBeFirstCommandError
+
 from components import header_component
 
 def index_view():
-    st.set_page_config(
-        page_title="IIIF Image Manager",
-        page_icon="🖼️",
-        layout="wide"
-    )
+    try:
+        st.set_page_config(
+            page_title="IIIF Image Manager",
+            page_icon="🖼️",
+            layout="wide"
+        )
+    except StreamlitSetPageConfigMustBeFirstCommandError:
+        pass
 
     header_component(
         title='Streamlit-IIIF',

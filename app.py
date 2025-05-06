@@ -1,10 +1,10 @@
-__import__('pysqlite3')
-import sys
-sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+import sqlite3
+if sqlite3.sqlite_version < '3.35.0':
+    __import__('pysqlite3')
+    import sys
+    sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 
 import streamlit as st
-from streamlit.connections import SQLConnection
-
 from entity import Base
 from helper.permission import is_authenticated
 from views.public import public_collection_page, public_home_page, public_show_page, public_rag_page, public_agent_page
@@ -18,15 +18,16 @@ def get_container():
     app_container = AppContainer()
     config_dict = st.secrets.to_dict()
     app_container.config.from_dict(config_dict)
-    return app_container
 
-def init_db(connection: SQLConnection):
+    # set up database
+    connection = app_container.connection()
     Base.metadata.create_all(bind=connection.engine)
+
+    return app_container
 
 
 if __name__ == '__main__':
     container = get_container()
-    init_db(container.connection())
     page_dict = {'public': [public_home_page, public_collection_page, public_show_page, public_rag_page, public_agent_page]}
 
     if is_authenticated():
@@ -38,5 +39,3 @@ if __name__ == '__main__':
     pg = st.navigation(pages=page_dict)
 
     pg.run()
-
-
